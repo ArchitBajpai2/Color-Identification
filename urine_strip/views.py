@@ -20,5 +20,5 @@ def upload_image(request):
         urine_strip_image = UrineStripImage(image=image, colors=colors)
         urine_strip_image.save()
 
-        return Response({'colors': colors}, status=status.HTTP_201_CREATED)
+        return JsonResponse({'colors': colors}, status=status.HTTP_201_CREATED)
     return Response({'error': 'Invalid request'}, status=status.HTTP_400_BAD_REQUEST)
