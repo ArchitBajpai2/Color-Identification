@@ -1,0 +1,45 @@
+<!-- urine_strip/templates/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urine Strip Color Identifier</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            background-color: #b9e5ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Add more styles as needed */
+    </style>
+</head>
+<body>
+    <h1>Urine Strip Color Identifier</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+    
+    <div id="result">
+        {% if colors %}
+            <p>Colors:</p>
+            <ul>
+                {% for key, value in colors.items %}
+                    <li>{{ key }}: [{{ value|join:', ' }}]</li>
+                {% endfor %}
+            </ul>
+        {% elif error %}
+            <p>Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
