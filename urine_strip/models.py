@@ -1,4 +1,4 @@
-# urine_strip/models.py
+
 from django.db import models
 
 class UrineStripImage(models.Model):
